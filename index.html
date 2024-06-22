@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Telegram OAuth Example</title>
+  </head>
+  <body>
+    <h1>Telegram OAuth Example</h1>
+    <a
+      href="https://oauth.telegram.org/auth?bot_id=7451266856&origin=https://logaut.netlify.app&request_access=write"
+      >Login with Telegram</a
+    >
+
+    <script>
+      // URL query parameters extraction function
+      function getQueryParams() {
+        const params = {};
+        const queryString = window.location.search.substring(1);
+        const regex = /([^&=]+)=([^&]*)/g;
+        let m;
+        while ((m = regex.exec(queryString))) {
+          params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+        }
+        return params;
+      }
+
+      // Checking if the user is redirected back with access token
+      const params = getQueryParams();
+      if (params["tg_passport"]) {
+        console.log("User logged in with Telegram:", params);
+        // Here you can handle the authenticated user
+      }
+    </script>
+  </body>
+</html>
